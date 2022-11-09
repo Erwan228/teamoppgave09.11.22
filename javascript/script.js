@@ -12,8 +12,8 @@ const backgroundMusic = new Audio('FFXIV OST Moogle Beast Tribe  _ Mogmender The
 updateView();
 function updateView(){
     site.innerHTML = /*HTML*/ `
-    <h1 class="title" onclick="playMusic()">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
-    <button >Play Cool Tune!</button>
+    <h1 class="title">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
+    <button onclick="playMusic()">Play Cool Tune!</button>
     <div>${mood}</div>
     <div class="metersAndButtons">
     <meter class="foodbar" value="${food}" max="100"></meter><button class="foodbutton" onclick="generateValue('food')">Feed</button>
