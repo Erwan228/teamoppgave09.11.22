@@ -2,6 +2,12 @@ body {
     background-color: bisque;
 }
 
-.moogle-pics {
-    height: 600px;
+.moogle-pics img {
+    height: 500px;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
