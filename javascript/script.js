@@ -1,37 +1,67 @@
 //model
 let site = document.getElementById(`app`);
-let mood = '<img src="images/9140_Moogle.png">'; 
-let food = 0;
-let sleep = 0;
-let play = 0;
+let mood = '<img class="image" src="images/9140_Moogle.png">';  
+let food = 100;
+let sleep = 100;
+let play = 100;
+let moussecount = '';
 
 //view
 updateView();
 function updateView(){
     site.innerHTML = /*HTML*/ `
-    <h1>Dette er Mousse. Pass godt på Mousse!</h1>
-    <div class="moogle-pics">${mood}</div>
+    <h1 class="title">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
+    <div>${mood}</div>
     <div class="metersAndButtons">
-    <meter value="${food}" max="100"></meter><button onclick="addValue('food')">Feed</button>
-    <meter value="${sleep}" max="100"></meter><button onclick="addValue('sleep')">Sleep</button>
-    <meter value="${play}" max="100"></meter><button onclick="addValue('play')">Play!</button>
+    <meter class="foodbar" value="${food}" max="100"></meter><button class="foodbutton" onclick="addValue('food')">Feed</button>
+    <meter class="sleepbar" value="${sleep}" max="100" ></meter><button class="sleepbutton" onclick="addValue('sleep')">Sleep</button>
+    <meter class="playbar" value="${play}" max="100"></meter><button class="playbutton" onclick="addValue('play')">Play!</button>
     </div>
     `;
 }
 
-//controller
-
-function addValue(addPoints){
-        if (addPoints == 'food' && food < 100) food += 10;
-        if (addPoints == 'sleep' && sleep < 100) sleep += 10;
-        if (addPoints == 'play' && play < 100) play += 10;
-        updateView();
+function gameOver(){
+    site.innerHTML = /*HTML*/ `
+    <h1 class="title">Mousse ${moussecount} har fått nok av din elendige behandling!</h1>
+    <div class="moogle-pics">${mood}</div>
+    <div class="metersAndButtons">
+    <button onclick="resetValues()">Reset</button>
+    </div>
+    `;  
+    
 }
-
-function decreasingValue(){
-    if (food == 70 || sleep == 70 || play == 70) mood = '<img src="images/AngryMoogle.jpg"';
-    if (food == 30 || sleep == 30 || play == 30) mood = '<img src="images/crying _moogle.png"';
-    if (food == 0 || sleep == 0 || play == 0) mood = '<img src=""';
+//controller
+decreasingValue();
+function addValue(addPoints){
+    if (addPoints == 'food' && food < 100) food += 10;
+    if (addPoints == 'sleep' && sleep < 100) sleep += 10;
+    if (addPoints == 'play' && play < 100) play += 10;
     updateView();
 }
 
+function decreasingValue(){
+    setTimeout(decreasingValue, 1000);
+    food -= 2;
+    sleep -= 1; 
+    play -= 1.5; 
+    // && = *  || = +
+    if (food >= 70 || sleep >= 70 || play >= 70) mood = '<img class="image" src="images/9140_Moogle.png">'; 
+    if (food <=70 && food >= 30 || sleep <= 70 && sleep >= 30 || play <= 70 && play >= 30) mood = '<img class="image" src="images/AngryMoogle.jpg">';
+    if (food <= 30 && food >= 0 || sleep <= 30 && sleep >= 0 || play <= 30 && play >= 0) mood = '<img class="image" src="images/crying _moogle.png">';
+    if (food <= 0 || sleep <= 0 || play <= 0) {
+        mood = '<img class="image" src="images/gameover_moogle.png"<br/><div class="gameover">GAME OVER</div>'
+        return gameOver();
+    };
+    updateView();
+}
+
+function resetValues(){
+    food = 100;
+    sleep = 100;
+    play = 100;
+    if (moussecount == '') {
+        moussecount = 0;
+        moussecount += 2;
+    }else {moussecount++;}
+    updateView();
+}
