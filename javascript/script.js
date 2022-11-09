@@ -6,6 +6,7 @@ let sleep = 100;
 let play = 100;
 let moussecount = '';
 let bonusPictures ='';
+let backgroundMusic = ''; 
 
 //view
 updateView();
@@ -18,7 +19,7 @@ function updateView(){
     <meter class="sleepbar" value="${sleep}" max="100" ></meter><button class="sleepbutton" onclick="generateValue('sleep')">Sleep</button>
     <meter class="playbar" value="${play}" max="100"></meter><button class="playbutton" onclick="generateValue('play')">Play!</button>
     </div>
-    <div>${bonusPictures}</div>
+    <div> ${bonusPictures} </div>
     `;
 }
 
@@ -68,8 +69,14 @@ function resetValues(){
 }
 
 function generateValue(regenerateBonusPicture){
-    if (regenerateBonusPicture == 'food') bonusPictures = `<div onclick="addValue('food')"><img scr="images/cookie.png"></div>`;
-    if (regenerateBonusPicture == 'sleep') bonusPictures = `<div onclick="addValue('sleep')"><img scr="images/cookie.png"></div>`;
-    if (regenerateBonusPicture == 'play') bonusPictures = `<div onclick="addValue('play')"><img scr="images/cookie.png"></div>`;
+    if (regenerateBonusPicture == 'food') bonusPictures = `
+    <div class ="valuePicture" onclick="addValue('food')"><img src="images/cookie.png"></div>`;
+
+    if (regenerateBonusPicture == 'sleep') bonusPictures = `
+    <div class ="valuePicture" onclick="addValue('sleep')"><img src="images/1280px-Steel_bed.png"></div>`;
+
+    if (regenerateBonusPicture == 'play') bonusPictures = `
+    <div class ="valuePicture" onclick="addValue('play')"><img src="images/toys.png"></div>`;
+    console.log(bonusPictures);
     updateView();
 }

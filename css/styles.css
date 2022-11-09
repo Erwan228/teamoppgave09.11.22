@@ -27,3 +27,7 @@ body {
 .foodbar ::-webkit-meter-bar {
     background-color: #7B3F00;
 }
+
+.valuePicture img {
+    height: 100px;
+}
