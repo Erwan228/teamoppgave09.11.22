@@ -5,6 +5,7 @@ let food = 100;
 let sleep = 100;
 let play = 100;
 let moussecount = '';
+let bonusPictures ='';
 
 //view
 updateView();
@@ -13,10 +14,11 @@ function updateView(){
     <h1 class="title">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
     <div>${mood}</div>
     <div class="metersAndButtons">
-    <meter class="foodbar" value="${food}" max="100"></meter><button class="foodbutton" onclick="addValue('food')">Feed</button>
-    <meter class="sleepbar" value="${sleep}" max="100" ></meter><button class="sleepbutton" onclick="addValue('sleep')">Sleep</button>
-    <meter class="playbar" value="${play}" max="100"></meter><button class="playbutton" onclick="addValue('play')">Play!</button>
+    <meter class="foodbar" value="${food}" max="100"></meter><button class="foodbutton" onclick="generateValue('food')">Feed</button>
+    <meter class="sleepbar" value="${sleep}" max="100" ></meter><button class="sleepbutton" onclick="generateValue('sleep')">Sleep</button>
+    <meter class="playbar" value="${play}" max="100"></meter><button class="playbutton" onclick="generateValue('play')">Play!</button>
     </div>
+    <div>${bonusPictures}</div>
     `;
 }
 
@@ -44,7 +46,6 @@ function decreasingValue(){
     food -= 2;
     sleep -= 1; 
     play -= 1.5; 
-    // && = *  || = +
     if (food >= 70 || sleep >= 70 || play >= 70) mood = '<img class="image" src="images/9140_Moogle.png">'; 
     if (food <=70 && food >= 30 || sleep <= 70 && sleep >= 30 || play <= 70 && play >= 30) mood = '<img class="image" src="images/AngryMoogle.jpg">';
     if (food <= 30 && food >= 0 || sleep <= 30 && sleep >= 0 || play <= 30 && play >= 0) mood = '<img class="image" src="images/crying _moogle.png">';
@@ -63,5 +64,12 @@ function resetValues(){
         moussecount = 0;
         moussecount += 2;
     }else {moussecount++;}
+    updateView();
+}
+
+function generateValue(regenerateBonusPicture){
+    if (regenerateBonusPicture == 'food') bonusPictures = `<div onclick="addValue('food')"><img scr="images/cookie.png"></div>`;
+    if (regenerateBonusPicture == 'sleep') bonusPictures = `<div onclick="addValue('sleep')"><img scr="images/cookie.png"></div>`;
+    if (regenerateBonusPicture == 'play') bonusPictures = `<div onclick="addValue('play')"><img scr="images/cookie.png"></div>`;
     updateView();
 }
