@@ -6,8 +6,7 @@ let sleep = 100;
 let play = 100;
 let moussecount = '';
 let bonusPictures ='';
-let backgroundMusic = ''; 
-
+let backgroundMusic = new Audio('FFXIV OST Moogle Beast Tribe  _ Mogmender Theme.webm'); 
 //view
 updateView();
 function updateView(){
@@ -79,4 +78,8 @@ function generateValue(regenerateBonusPicture){
     <div class ="valuePicture" onclick="addValue('play')"><img src="images/toys.png"></div>`;
     console.log(bonusPictures);
     updateView();
+}
+
+window.onload=function(){
+    backgroundMusic.play();
 }
