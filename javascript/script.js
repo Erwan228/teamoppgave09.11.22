@@ -6,12 +6,14 @@ let sleep = 100;
 let play = 100;
 let moussecount = '';
 let bonusPictures ='';
-let backgroundMusic = new Audio('FFXIV OST Moogle Beast Tribe  _ Mogmender Theme.webm'); 
+const backgroundMusic = new Audio('FFXIV OST Moogle Beast Tribe  _ Mogmender Theme.webm'); 
+
 //view
 updateView();
 function updateView(){
     site.innerHTML = /*HTML*/ `
-    <h1 class="title">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
+    <h1 class="title" onclick="playMusic()">Dette er Mousse ${moussecount}. Pass godt på Mousse ${moussecount}!</h1>
+    <button >Play Cool Tune!</button>
     <div>${mood}</div>
     <div class="metersAndButtons">
     <meter class="foodbar" value="${food}" max="100"></meter><button class="foodbutton" onclick="generateValue('food')">Feed</button>
@@ -81,8 +83,5 @@ function generateValue(regenerateBonusPicture){
 }
 
 function playMusic(){
-    if(sleep == 100 && food == 100 && play == 100) {backgroundMusic.play(); }
-
-   // window.onload=function(){
-    //backgroundMusic.play();}
+    backgroundMusic.play();
 }
