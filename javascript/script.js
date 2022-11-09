@@ -80,6 +80,9 @@ function generateValue(regenerateBonusPicture){
     updateView();
 }
 
-window.onload=function(){
-    backgroundMusic.play();
+function playMusic(){
+    if(sleep == 100 && food == 100 && play == 100) {backgroundMusic.play(); }
+
+   // window.onload=function(){
+    //backgroundMusic.play();}
 }
